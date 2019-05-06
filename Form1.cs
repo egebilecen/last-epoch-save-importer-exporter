@@ -16,9 +16,16 @@ namespace LastEpochSaveProgram
 
         private void DeleteCurrentSave()
         {
-            RegistryKey regKey = Registry.CurrentUser;
-            regKey.DeleteSubKeyTree(key);
-            regKey.Close();
+            try
+            {
+                RegistryKey regKey = Registry.CurrentUser;
+                regKey.DeleteSubKeyTree(key);
+                regKey.Close();
+            }
+            catch(Exception) // if already deleted, exception will occur.
+            {
+
+            }
         }
 
         private void btn_import_Click(object sender, EventArgs e)
